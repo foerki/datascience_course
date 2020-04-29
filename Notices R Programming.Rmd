@@ -6,12 +6,15 @@ output: pdf_document
 ---
 
 # R Porgramming
+
 ## Week 1: Getting Started and R Nuts and Bolts
+
 ### Writing Code/Setting Your Working Directory
 
 In R (not R Studio): How to set my working directory and how to edit R code files using the text editor.
 
 You can find out what your working directory is by using following code:
+
 ```{r}
 getwd()
 ```
@@ -19,21 +22,27 @@ getwd()
 To change the working directory: Go to (above) Misc > Change Working Directory. 
 
 Code to list all files within directory:
+
 ```{r}
 dir()
 ```
 
+
 When you want to look if there are objects in your work space:
+
 ```{r}
 ls()
 ```
 
+
 You can open a text editor in R with the white paper sign. To run it you can copy the content and run on R or you can save the file as .r-file. To source the file you saved, you can source it within the directory with the following code:
+
 ```{r}
 ## source("filename.R")
 ```
 
 ***
+
 
 ### Learning Objectives
 * Install R and RStudio software packages
@@ -47,10 +56,12 @@ You can open a text editor in R with the white paper sign. To run it you can cop
 
 ***
 
+
 ### Introduction
 Course specializiation is to get the nuts and bolts of R programming!
 
 ***
+
 
 ### Overview and History of R
 **What is R?** It is a dialect of S.
@@ -60,7 +71,8 @@ Course specializiation is to get the nuts and bolts of R programming!
 
 **Back to R:** Invented in 1991. First public announcement 1993. In 1995 it is a free software!
 
-**Features of R:** 
+**Features of R:**
+
 * Syntax is very similar to S
 * Semantics are superficially similar to S, but in reality quite different.
 * Runs on almost any standard computing platform/OS
@@ -87,7 +99,8 @@ Course specializiation is to get the nuts and bolts of R programming!
 
 **Design of the R System:**
 It is divided into 2 conceptual parts:
-* "Base* R system that you download from CRAN
+
+* "Base" R system that you download from CRAN
 * Everything else
 R functionality is divided into a number of packages:
 * "Base" system contains base package with most fundamental functions
@@ -97,25 +110,29 @@ R functionality is divided into a number of packages:
 
 ***
 
+
 ### Getting Help
 Email: r-help@r-project.org
 
 ***
 
+
 ### R Console Input and Evaluation
 
 **Entering Input:**
 Things we type in R prompt are called expressions. The sympobl looking like left-hand-arrow is actually the assignment operator.
+
 ```{r}
 x <- 1
 print(x)
 msg <- "hello"
-z <- ## Incomplete expression
+## z <- ## Incomplete expression
 ```
 This means tha value right is assigned to variable left. The last example is an error, because it is a comment which R doesn't use for computation.
 
 **Evaluation:**
 When expression is entered in prompt, it is evaluated and the result of evaluated expression is returned. Result may be auto-printed.
+
 ```{r}
 x <- 5 ## nothing printed
 x ## auto-printing occurs (typing objects name!)
@@ -124,6 +141,7 @@ print(x) ## explicit printing
 
 **Printing:**
 The : operator is use to create integer sequences. In this case integer vector
+
 ```{r}
 x <- 1:20
 x
@@ -134,6 +152,7 @@ x
 ### Data Types - R Objects and Attributes
 **Objects:** All the things we that we encounter in R. There are different kind of data, but everything is an object.
 R has 5 basic or "atomic" classes of objects:
+
 * character
 * numeric (real numbers)
 * integer
@@ -141,6 +160,7 @@ R has 5 basic or "atomic" classes of objects:
 * logical (True/False)
 
 The most basic object is a vector:
+
 * Can only obtain objects of the same class
 * BUT: the one exception is a *list*, which is represented as vector, but can contain objects of different classes (reason why usually used, you can even have a list within a list, very useful!)
 
@@ -151,6 +171,7 @@ vector()
 
 **Numbers:**
 3 Numbers are treated as numeric objects (double precision real numbers)
+
 * If explicitly integers were wished, you need to specify the L suffix.
 * Example: Entering 1 gives numeric object; entering 1L gives integer
 * There is also a special number: Inf which is infinity like 1/0. It can be used in ordinary calculations like 1/Inf which is 0.
@@ -158,6 +179,7 @@ vector()
 
 **Attributes:**
 Objects can have attributes
+
 * names, dimnames
 * dimensions ( matrices, arrays so on)
 * class
@@ -170,7 +192,9 @@ Attributes of an object can be acceses with **attributes() function**!
 
 ### Data Types - Vectors and Lists
 **Creating Vectors:**
+
 The **c() function** can also be used to create vectors and objects
+
 ```{r}
 x <- c(0.5, 0.6) ##numeric
 x <- c(TRUE, FALSE) ##logical
@@ -181,12 +205,14 @@ x <- c(1+0i, 2+4i) ##complex
 ```
 
 Using the **vector()** function:
+
 ```{r}
 x <- vector("numeric", length=20)
 x
 ```
 
 **Mixing Objects:**
+
 ```{r}
 y <- c(1.7, "a") ##character
 y <- c(TRUE, 2) ##numeric
@@ -226,6 +252,7 @@ Lists have for index, always double brackets on them!
 
 ***
 
+
 ### Data Types - Matrices
 
 Matrices are vectors with a dimension attribute (itself an integer vector of length 2, **nrow** and **ncol**).
@@ -262,11 +289,13 @@ cbind(x,y)
 rbind(x,y)
 ```
 
+
 ***
 
 ### Data Types -Factors
 
 Factors are used to represent categorical data. Can be unordered or ordered. One can think of a factor as an integer vector where each integer has a *label*.
+
 * Factors are treated specially by modelling functions **lm()** and **glm()**
 * Using factors with labels is *better* than using integers because factors are self-decribing; having a variable that has values "Male" and "Female" is better than a variable that has values 1 and 2.
 
@@ -286,10 +315,12 @@ x
 
 ***
 
+
 ### Data Types - Missing Values
 
 **Missing Values:**
 Are denoted by **NA** or **NaN** for undefined mathematical operations.
+
 * **is.na()** is used to test objects if they are **NA**
 * **is.nan()** is used to test for **NaN**
 * **NA** values have a class also, so there are integer **NA**, character **NA** etc.
@@ -306,9 +337,11 @@ is.nan(x)
 
 ***
 
+
 ### Data Types - Data Frames
 
 Data frames are used to store tabular data
+
 * They are represented as a special type of list where every element of the list has to have the same length
 * Each element of the list can be thought of as a column and the length of each element of the list is the number of rows
 * Unlike matrices, data frames can store different class of objects in each column (like lists); matrices must have every element be the same class
@@ -324,6 +357,7 @@ ncol(x)
 ```
 
 ***
+
 
 ### Data Types - Names Attribute
 
@@ -354,6 +388,7 @@ m
 
 ***
 
+
 ### Data Types - Summary
 
 * atomic classes: numeric, logical, character, integer, complex
@@ -365,9 +400,11 @@ m
 
 ***
 
+
 ### Reading Tabular Data
 
 There are a few principal functions reading data into R:
+
 * **read.table**, **read.csv** for reading tabular data
 * **readLines**, for reading lines of a text file
 * **source**, for reading in R code files (*inverse of dump*)
@@ -376,6 +413,7 @@ There are a few principal functions reading data into R:
 * **unserialize**, for reading single R objects in binary form
 
 There are analogous functions for writing data to files:
+
 * **write.table**
 * **writeLines**
 * **dump**
@@ -385,6 +423,7 @@ There are analogous functions for writing data to files:
 
 Reading Data Files with *read.table* (very important!!):
 It is the most commonly used functions for reading data. It has a few important arguments:
+
 * **file**, the name of a file, or a connection
 * **header**, logical indicating if the file has a header line
 * **sep**, a string indicating how the columns are separated
@@ -394,5 +433,1098 @@ It is the most commonly used functions for reading data. It has a few important 
 * **skip**, the number of lines to skip from the beginning
 * **strinsAsFactors**, should character variables be coded as factors?
 
+For small to moderatly sized datasets, you can usually call read.table without specifying any other arguments
+
+```{r}
+## data <-read.table("foo.txt")
+```
+
+R will automatically:
+
+* skip lines that begin with a #
+* figure out how many rows there are (and how much memory needs to be allocated)
+* figure what type of variable is in each column of the table. Telling R all these things directly makes R run faster and more efficiently
+* **read.csv** is identical to **read.table** except that the default separator is a comma (vice versia with space)
+
+***
 
 
+### Reading Large Tables
+
+With mnuch larger datasets, doing the following things will make your life easier and will prevent R from choking.
+
+* Read the help page for **read.table**, which contains many hints
+* Make a rough calculation of the memory required to store your dataset. If the dataset is larger than the amount of RAM on your computer, you can probably stop right there.
+* Set **comment.char** ="" if there are no commended lines in your files.
+
+**Reading in Larger Datasets with read.table**
+
+* Use the **colClasses** argument. Specifying this option instead of default makes it run faster, often twice as fast. For this you need to know the class of each column in your data frame. If all columns are "numeric" then you can set **colClasses = "numeric"**. A fast, dirty way to figure out the classes of each column is:
+
+```{r}
+## initial <- read.table("datatable.txt", nrows=100)
+## classes <- sapply(initial, class)
+## tabAll <- read.table("datatable.txt", colClasses=classes")
+```
+
+* set **nrows**. It doesn't make it run faster but it helps with memory usage. A mild overestimate is ok. We can use Unix tool **wc** to calculate the number of lines in a file.
+
+**Know the System**
+When using R with larger datasets, it's useful to knew followin things about our system.
+
+* How much memory is available
+* What other applications are in use?
+* Are there other users logged into the same system?
+* What operating system?
+* Is the OS32 or 64 bit?
+
+*** 
+
+
+### Textual Data Formats
+
+**Textual Formats**
+
+* **dumping** and **dputing** are useful because the resulting textual format is edit-able, and in the case of corruption, potentially recoverable
+* Unlike writing out a table or csv file, **dump** and **dput** preserve the metadata (sacrificing some readability), so that another user doesn't have to specify it all over again
+* Textual formats can work much better with version control programs like subversion or git which can only track changes meaningfully in text files
+* Textual formats can be longer-lived; if there is courruption somewhere in the file, it can be easier to fix the problem
+* Textual formats adhere to the "Unix philosophy"
+* Downside: Format is not very space-efficient...
+
+**dput-ing R Objects**
+Another way to pass data around is by deparsing the R object with **dput** and reading it back in using **dget**
+
+```{r}
+y <- data.frame(a=1, b="a")
+dput(y)
+dput(y, file= "y.R")
+new.y <- dget("y.R")
+new.y
+```
+
+**Dumping R Objects **
+Multiple objects can be deparsed using the dump function and read back in using **source**.
+
+```{r}
+x <- "foo"
+y <- data.frame(a=1, b="a")
+# dump(c("x", "y"), file="data.R")
+y
+x
+```
+
+***
+
+
+### Connections: Interfaces to the Outside World
+
+Data are read in using *connection* interfaces. Connections ca be made to files (most coomon) or to other more exotic things.
+
+* **file**, opens a connection to a file
+* **gzfile**, opens a connection to a file compressed with gzip
+* **bzfile**, ioens a connection to a file compressed with bzip2
+* **url**, opens a connection to a webpage
+
+**File Conneections**
+```{r}
+str(file)
+```
+
+* **description** is the name of the file
+* **open** is a code indicating
++ "r" read only
++ "w" writing (and initializing a new file)
++ "a" appending
++ "rb", "wb", "ab" reading, writing or appending in the binary mode (Windows)
+
+**Connections**
+In general, powerful tools that let you navigate files or other external objects. In practice, we often don't need to deal with the connection interface directly.
+
+```{r}
+## con <- file("foo.txt", "r")
+## data <- read.csv(con)
+## close con 
+```
+
+is the same as
+
+```{r}
+## data <- read.csv("foo.txt")
+```
+
+**Reading Lines of Text File**
+
+```{r}
+## con <- gzfile("words.gz")
+## x <- readLines(con, 10)
+## x
+```
+
+*writeLines* takes a character vector and writes each element one line at a time to a text file
+
+Also possible for webpages!
+
+```{r}
+con <- url("https://www.jhsph.edu", "r")
+x <- readLines(con)
+head(x)
+```
+
+***
+
+
+### Subsetting - Basics
+
+There are a number of operators that can be used to extract subsets of R objects.
+
+* [ always returns an object of the same class as the original; can be used to select more than one element (there is one exception)
+* [[ is used to extract elements of a list or a data frame; it can only be used to extract a single element and the class of the returned object will not necessarily be a list or data frame
+* $ is used to extract elements of a list or data frame by name; semantics are similar to hat of [[
+
+```{r}
+x <- c("a", "b", "c", "c", "d", "a")
+x[1]
+x[2]
+x[1:4]
+x[x > "a"]
+u <- x > "a" #It is a logical vector, which tells which elements are greater than "a"
+u
+x[u]
+```
+
+***
+
+
+### Subsetting - Lists
+
+```{r}
+# Subsetting Lists
+x <- list(foo=1:4, bar=0.6)
+x[1]
+x[[1]]
+x$bar
+x[["bar"]]
+x["bar"]
+
+y <- list(foo=1:4, bar=0.6, baz ="hello")
+y[c(1,3)]
+```
+
+The [[ operator can be used with *computed* indices; $ can only used with literal names
+
+```{r}
+x <- list(foo=1:4, bar=0.6, baz="hello")
+name <- "foo"
+x[[name]] ## computed index for 'foo'
+x$name ## element 'name' doesn't exist!
+x$foo ## element 'foo' does exist
+```
+```{r}
+x <- list(a=list(10, 12, 14), b=c(3.14, 2.81))
+x[[c(1, 3)]]
+## x[[[1]][[3]]]
+x[[c(2, 1)]]
+```
+
+***
+
+
+### Subsetting - Matrices
+
+Matrices can be subsetted in the usual way with (i, j) type indices
+
+```{r}
+x <- matrix(1:6, 2 ,3)
+x[1, 2]
+x[2, 1]
+x[1, ]
+x[, 2]
+```
+
+Indices can also be missing. above
+
+By default, when a single element of a matrix is retrieved, it is returned as a vector of length 1 rather than a 1x1 matrix. This behavior can be turned off by setting **drop=FALSE**
+
+```{r}
+x <- matrix(1:6, 2 ,3)
+x[1, 2]
+x[1, 2, drop=FALSE]
+```
+
+Similarly subsetting a single column or row will give you a vector, not a matrix (by default).
+
+```{r}
+x <- matrix(1:6, 2 ,3)
+x[1, ]
+x[1, , drop=FALSE]
+```
+
+***
+
+
+### Subsetting - Partial Matching
+
+Partial matching of names is allowed with [[ and $
+
+```{r}
+x <- list(aardvark=1:5)
+x$a
+x[["a"]]
+x[["a", exact=FALSE]]
+```
+
+To save a lot of typing and making it faster. You can shortcut with letters if only one letter within list is associated with an element!
+
+***
+
+
+### Subsetting - Removing Missing Values
+
+**Removing NA Values**
+A common task is to remove missing values (NA).
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+bad <- is.na(x)
+x[!bad]
+```
+
+What if there are multiple things and you want to take the subset with no missing values? work with *complete.cases* (logical vector!)!
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+y <- c("a", "b", NA, "d", NA, "f")
+good <- complete.cases(x, y)
+good
+x[good]
+y[good]
+```
+
+***
+
+
+### Vectorized Operations
+
+Many operations in R are *vectorized* making code more efficient, concise, and easier to read.
+
+```{r}
+x <- 1:4; y <- 6:9
+x+y
+x > 2
+y==8
+x*y
+x/y ## Not an Inverse!!!
+```
+
+**Vectorized Matrix Operations**
+
+```{r}
+x <- matrix (1:4, 2, 2); y <- matrix(rep(10, 4), 2, 2)
+x*y ##element-wise multiplication
+x/y
+x %*% y ## true matrix multiplication
+
+```
+
+***
+
+
+## Week 2: Programming with R
+
+### Learning Objectives
+
+* Write an if-else expression
+* Write a for loop, a while loop and a repeat loop
+* Define a function in R and specify its return value 
+* Describe how R binds a value to a symbol via the search list
+* Define what lexical scoping is with respect to how the value of free variables are resolved in R
+* Convert a charcter string representing a date/time into an R datetime object
+
+***
+
+### Control Structures - Introduction
+
+It allows you to control the flow of an R program. 
+
+* The basic contructs are things like *if else* for testing logical conditions.
+* The four *for* exectuing a loop a fixed number of times.
+* *While* executes a loop while condition is true
+* *Repeat* is a construct that allows you to just simp, to immediately execute an infinite loop.
+* *Break* allows you to break out of any type of loop.
+* *Next* skips the iteration we will loop
+* *Return* allows you to exit a function
+
+***
+
+
+### Control Structures - If-else
+Basic structure as code:
+
+```{r}
+### if(##<condition>) {
+## do something
+### } else {
+## do someting else (it's optional!)
+}
+### if(##<condition1>) {
+## do something
+### } else if (<condition2>) {
+## do something different
+### } else {
+## do something different
+} 
+
+
+```
+
+There can be any elseif conditions! And the else clause is in general not necessary. You can leave it out!
+
+**if**
+Examples:
+
+```{r}
+if(x>3) {
+  y <- 10
+} else {
+  0
+}
+```
+
+or
+
+```{r}
+y <- if(x>3) {
+  10
+} else {
+  0
+}
+```
+
+***
+
+
+### Control Structures - For loops
+
+*for loops* take an interactor variable and assign it successive values from a sequence or vector. *For loops* are most commonly used for iterating over the elements of an object (list, vector, etc.)
+
+```{r}
+for(i in 1:10) {
+  print(i)
+}
+```
+
+This 3 loops have same behavior
+
+```{r}
+x <-c("a", "b", "c", "d")
+
+for(i in 1:4) {
+  print(x[i])
+}
+
+for(i in seq_along(x)) {
+  ## seq_along takes a vector as an input and it creates an integer sequence
+  print(x[i])
+}
+
+for(letter in x) {
+  print(letter)
+}
+
+for(i in 1:4) print(x[i])
+```
+
+
+**Nested for loops**
+*for loops* can be nested
+
+Famous example: looping through matrix with columns and rows. First iterating through row then trough column. *seq_len()*-function takes an integer, which in this case happens to be the number of rows in x, and then it creates an integer sequence out of that.
+```{r}
+x <- matrix(1:6, 2, 3)
+
+for(i in seq_len(nrow(x))) {
+  for(j in seq_len(ncol(x))){
+    print(x[i, j])
+  }
+}
+```
+
+
+Nesting beyond 2 or 3 levels is often very difficult to read/understand! (Careful!!)
+
+***
+
+
+### Control Structures - While loops
+
+*While loops* begin by testing a condition. If it is true, then they execute the loop body. Once the loop body is executed, the condition is tested again, and so forth.
+
+Example:
+
+```{r}
+count <- 0
+
+while(count <10) {
+  print(count)
+  count <- count +1
+}
+```
+
+
+*While loops* can potentionally result in infinite loops if not written properly!!!
+
+**While**
+Sometimes there will be more than one condition in the test.
+
+```{r}
+z <- 5
+
+while(z >=3 && z <=10) {
+  print(z)
+  coin <- rbinom(1, 1, 0.5)  ##coin flipping
+  
+  if(coin==1) { ## random walk
+    z <- z+1
+  } else {
+    z <- z-1
+  }
+}
+```
+
+
+Conditions are always evaluated from left to right!
+
+***
+
+
+### Control Structures - Repeat, Next, Break
+
+**repeat**
+
+*Repeat* initiates an infinite loop; these are not used in statistical applications but they do have their uses. The only way to exit a *repeat* loop is to call *break*.
+
+```{r}
+x0 <- 1
+tol <- 1e-8
+
+## repeat{
+## x1 <- computeEstimate()
+
+## if(abs(x1-x0) < tol) {
+## break
+## } else {
+## x0 <- x1
+## }
+## }
+```
+
+
+The loop above is a bit dangerous because there's no guarantee it will stop. Better to set a heard limit on the number of iterations (e.g. using a for loop) and then report whether convergence was achieved or not.
+
+
+* It requires an algorithm that is guaranteed to converge and not necessarily every algorithm has that property.
+* Depend a little bit on the tolerance. The loop will run longer if the tolerance is smaller and it's hard to predict how long this loop will run.
+
+**next, return**
+*next* is used to skip an iteration of a loop
+
+```{r}
+for(i in 1:100) {
+  if( i <= 20) {
+    ## Skip the first 20 iterations
+    next 
+  }
+  ## Do something here
+}
+```
+
+
+*return* signals that a function should exit and return a given value!
+
+**Control Structures**
+Summary
+
+* Control Structures like *if, while and for* allow you to control the flow of an R program
+* Infinite loops should generally be avoided, even if they are theoretically correct.
+* Control structures mentioned here are primarily useful for writing programs; for command-line interactive work, the * apply functions are more useful.
+
+***
+
+
+### Your First R Function
+
+First to write the function in a separate txt-file or in an r package!
+
+See my first Functions.R File what we have done!
+
+***
+
+
+### Functions (par1)
+
+*Functions* are created using the *function()* directive and are stored as R objects just like anything else. In particular, they are R objects of the class "function".
+
+```{r}
+## f <- function(<arguments>) {
+## Do something
+## }
+```
+
+
+Functions in R are "first class objects", which means that they can be treated much like any other R object.
+
+
+* Can be passed as arguments to other functions
+* Can be nested, so that you can define a function inside of another function. The return value of a function is the last expression in the function body to be evaluated.
+
+**Function Arguments**
+They have *named arguments* which potentially have *default values*.
+
+* The *arguments* are the arguments included in the function definition
+* The *formals function* returns a list of all the formal arguments of a function
+* Not every function call in R makes use of all the formal arguments
+* Function arguments can be missing or might have default values
+
+
+**Argument Matching**
+R function arguments can be matched positionally or by name. So the following calls to *sd* are all equivalent.
+
+
+```{r}
+mydata <- rnorm(100)
+sd(mydata)
+sd(x=mydata)
+sd(x=mydata, na.rm=FALSE)
+sd(na.rm=FALSE, x=mydata)
+sd(na.rm=FALSE, mydata)
+```
+
+
+Even though it's legal, I don't recommend messing around with the order of the arguments too much, since it can lead to some conclusion!
+
+
+You can mix positional matching with matching by name. When an argument is matched by name, it is "taken out" of the argument list and the remaining unnamed argeuments are matched in the order that they are listed in the function definition.
+
+```{r}
+args(lm)
+```
+
+
+The following two calls are equivalent
+
+```{r}
+lm(data=mydata, y ~ x, model=FALSE, 1:100)
+lm(y ~ x, mydata, 1:100, model=FALSE)
+```
+
+
+* Most of the time, named arguments are useful on the command line when you have a long argument list and you want to use the defaults for everything except for an argument near the end of the list.
+* Named arguments also help if you can remember the name of the argument and not its position on the argument list (plotting is a good example)
+
+
+Function arguments can also be *partially* matched, which is useful for interavtive work. The order of operations when given an argument is
+
+1. Check for exact match for a named argument
+2. Check for partial match
+3. Check for a positional match
+
+***
+
+
+### Functions (part2)
+
+**Defining a Function**
+
+```{r}
+f <- function(a, b=1, c=2, d=NULL) {
+  
+}
+```
+
+
+In addtion to not specifying a default value, you can also set an argument value to *NULL*
+
+
+**Lazy Evaluation**
+Arguments to functions are evaluated *lazy*, so they are evaluated only as needed
+
+```{r}
+f <- function(a, b) {
+  a^2
+}
+f(2)
+```
+
+
+This function never actually uses the argument b, so calling f(2) will not produce an error because the 2 gets positionally matched to a!
+
+
+```{r}
+f <- function(a, b) {
+  print(a)
+  print(b)
+}
+f(45)
+```
+
+
+Notice that "45" got printed first before the error was triggered. This is because b did not have to be evaluated until after *print(a)*. Once the function tried to evaluate *print(b)* it had to throw an error.
+
+
+**The "…" Argument**
+The … argument indicate a variable number of arguments that are usually passed on to other functions.
+
+* … is often used when extending another funciton and you don't want to copy the entire argument list of the original function
+
+```{r}
+myplot <- function(x, y, type="l", ...) {
+  plot(x, y, type=type, ...)
+}
+```
+
+
+Generic functions use ... so that extra arguments can be passed to methods (more on this later).
+
+```{r}
+mean 
+```
+
+The ... argument is also necessary when the number of arguments passed to be to the funciton cannot be known in advance.
+
+```{r}
+args(paste)
+
+args(cat)
+```
+
+
+**Arguments Coming After the "..." Argument**
+One catch with ... is that any arguments that appear *after* ... on the argument list must be named explicitly and cannot be partially matched.
+
+
+```{r}
+args(paste)
+paste("a", "b", sep=":")
+paste("a", "b", se=":")
+
+```
+
+***
+
+
+### Scoping Rules - Symbol Binding
+
+**A Diversion on Binding Values to Symbol**
+How does R know which value to assign to which symbol? When I type
+
+```{r}
+lm <- function(x) {x*x}
+lm
+```
+
+
+How does R know what value to assign to the symbol *lm*? Why doesn't give it the value of *lm* that is in the *stats* package?
+
+
+When R tries to bind a value to a symbol, it searches through a series of enviromnents to find the appropiate value. When you are working on the command line and need to retrieve the value of an R object, the order is roughly
+
+1. Search the global environment for a symbol name matching the one requested.
+2. Search the namespaces of each of the packages on the search list.
+
+Search list can be found by using the *search*-function
+
+```{r}
+search()
+```
+
+
+**Binding Values to Symbol**
+
+* The *global environment* or the user's workspace is always the first element of the search list and the *base* packe is always the last.
+* The order of the packages on the search list matters!
+* User's can configure which packages get loaded on startup so you cannot assume that there will be a set list of packages available
+* When a user loads a package with *library* the namespace of that package gets put in position 2 of the searc hlsit (by default) and everything else gets shifted down the list.
+* Note that R has separate namespaces for functions and non-functions so it's possible to have an object named c and a function named c.
+
+
+**Scoping Rules**
+The scoping rules of R are the main feature that makes it different from the original S language
+
+* The scoping rules determine how a value is associated with a free variable in a function
+* R uses *lexical scoping* or *static scoping*. A common alternative is *dynamic scoping*.
+* Related to the scoping rules is how R uses the search *list* to bind a value to a symbol
+* Lexical scoping turns out to be particularly useful for simplifying statistical computations.
+
+
+**Lexical Scoping**
+Example
+
+```{r}
+f <- function(x, y) {
+  x^2 + y/z #from where does z come from
+}
+```
+
+
+*z* is a *free variable*. The scoping rules of a language determine how values are assigned to free variable. Free variables are not formal arguments and are not local variables (assigned insided the function body).
+
+
+Lexical scoping in R means that
+
+*the values of free variables are searched for in the environment in which the function was defined."
+
+What is an enviroment?
+
+* An *environment* is a collection of (symbol, value) pairs, i.e. y is a symbol and 3.14 might be a value
+* Every environment has a parent environment; it is possible for an environment to have multiple "children"
+* The only environment without a parent is the empty environment
+* A function + an environment = a *closure* or *funtion closure*
+
+
+Searching for the value for a free variable:
+
+* If the value of a symbol is not found in the environment in which a function was defined, then the search is continued in the *parent environment*
+* The search continues down the sequence of parent environments until we hit the *top-level environment*; this usually the global environment (Workspace) or the namespace of a package.
+* After the top-level environment, the search continues down the search list until we hit the *empty environment*. If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.
+
+***
+
+### Scoping Rules - R Scoping Rules
+
+**Lexical Scoping**
+Why does all this matter?
+
+* Typically, a function is defined in the global environment, so that the values of free variables are just found in the user's workspace
+* This behavior is logical for most people and is usually the "right thing" to do
+* However, in R you can have functions defined *inside other functions*
+- Languages like C don't let you do this
+* Now things get interesting - In this case the environment in which a funciton is defined is the body of another function!
+
+```{r}
+make.power <- function(n) {
+  pow <- function(x) {
+    x^n
+  }
+  pow
+}
+```
+
+
+This funciton returns another function as its value.
+
+```{r}
+cube <- make.power(3)
+square <- make.power(2)
+cube(3)
+square(3)
+```
+
+
+**Exploring a Function Closure**
+
+What's in a function's environment?
+
+```{r}
+ls(environment(cube))
+get("n", environment(cube))
+ls(environment(square))
+get("n", environment(square))
+```
+
+
+**Lexical vs. Dynamic Scoping**
+
+
+```{r}
+y <- 10
+
+f <- function(x) {
+  y <- 2
+  y^2 + g(x)
+}
+
+g <- function(x) {
+  x*y
+}
+
+## What is the value of ? -> dynamic scoping! Look up underneath!
+f(3)
+```
+
+
+* With lexical scoping the value of *y* in the function *g* is looked up in the environment in which the function was defined, in this case the global environment, so the value of *y* is 10.
+* With dynamic scoping, the value of *y* is looked up in the environment from which the function was *called* (sometimes referred to as the *calling environment*)
+- In R the calling environment is known as the *parent frame*
+* So the value of *y* would be 2
+
+
+When a function is *defined* in the global environment and is subsequently *called* from the global environment, then the defining environment and the calling environment are the same. This can sometimes give the appearance of dynamic scoping.
+
+
+```{r echo=TRUE}
+g <- function(x) {
+  a <- 3
+  x+a+z
+}
+## (2) with error message!
+z <- 3
+g(2)
+```
+
+
+**Other languages**
+
+Other languages that support lexical scoping
+
+* Scheme
+* Perl
+* Python
+* Common Lisp (all languages converge to Lisp)
+
+
+**Consequences of Lexical Scoping**
+
+* In R, all objects must be stored in memory
+* All functions must carry a pointer to their respective defining environments, which could be anywhere
+* In S-PLUS, free variables are always looked up in the global workspace, so everything can be stored on the disk because the "defining environment" of all the functions was the same.
+
+***
+
+
+### Scoping Rules - Optimization Example
+
+**Application: Optimization**
+
+Why is any of this information useful?
+
+* Optimization in R like *optim, nlm and optimize* require you to pass a function whose arguments is a vector of parameters (e.g. a log-likelihood)
+* However, an object function might depend on a host of other things besides its parameters (like data)
+* When writing software which does optimization, it may be desirable to allow the user to hold certain parameters fixed
+
+
+**Maximazing a Normal Likelihood**
+
+Write a "constructor" function
+
+```{r}
+make.NegLogLik <- function(data, fixed=c(FALSE, FALSE)) {
+  params <- fixed 
+  function(p) {
+    params[!fixed] <- p
+    mu <- params[1]
+    sigma <- params[2]
+    a <- -0.5*length(data)*log(2*pi*sigma^2)
+    b <- -0.5*sum((data-mu)^2)/(sigma^2)
+    -(a+b)
+  }
+}
+```
+
+*Note*: Optimization functions in R *minimize* functions, so you need to use the negative log-likelihood
+
+
+```{r}
+set.seed(1); normals <- rnorm(100, 1, 2)
+nLL <- make.NegLogLik(normals)
+nLL
+ls(environment(nLL))
+```
+
+
+**Estimating Parameters**
+
+
+```{r}
+optim(c(mu=0, sigma=1), nLL)$par
+```
+
+Fixing Sigma=2
+
+
+```{r}
+nLL <- make.NegLogLik(normals, c(FALSE, 2))
+optimize(nLL, c(-1, 3))$minimum
+```
+
+
+Fixing mu=1
+
+
+```{r}
+nLL <- make.NegLogLik(normals, c(1, FALSE))
+optimize(nLL,c(1e-6, 10))$minimum
+```
+
+
+**Plotting the Likelihood**
+
+
+```{r}
+nLL <- make.NegLogLik(normals, c(1,FALSE))
+x <- seq(1.7, 1.9, len=100)
+y <- sapply(x, nLL)
+plot(x, exp(-(y-min(y))), type="l")
+
+
+nLL <- make.NegLogLik(normals, c(FALSE,2))
+x <- seq(0.5, 1.5, len=100)
+y <- sapply(x, nLL)
+plot(x, exp(-(y-min(y))), type="l")
+
+```
+
+
+**Lexical Scoping Summary**
+
+
+* Objective functions can be "built" which contain all of the necessary data for evaluating the function
+* No need to carry around long argument lists - useful for interactive and exploratory work
+* Code can be simplified and cleand up
+* Reference: Robert Gentleman and Ross Ihaka (2000). "Lexical Scope and Statistical Computing," JCGS, 9, 491-508
+
+***
+
+
+### Coding Standards
+
+
+**Coding Standards for R**
+
+* Always use text files/text editor
+* Indent your code 
+* Limit the width of your code (80 columns?)
+* Limit the length of individual functions
+
+**Indenting**
+
+* Indenting improves readability
+* Fixing line lenth (80 columns) prevents lots of nesting and very long functions
+* Suggested: Indent of 4 spaces at minimum; 8 spaces ideal
+
+***
+
+
+### Dates and Times
+
+
+**Dates and Times in R**
+
+R has developed a special representation of dates and times
+
+* Dates are represented by the *Date* class
+* Times are represented by the *POSIXct* or the *POSIXlt* class
+* Dates are stored internally as the number of days since 1970-01-01
+Times are stored internally as the number of seconds since 1970-01-01
+
+
+**Dates in R**
+
+Dates are represented by the Date class and can be coerced from a character string using the *as.Date()*-function.
+
+
+```{r}
+x <- as.Date("1970-01-01")
+x
+unclass(x)
+unclass(as.Date("1970-01-02"))
+```
+
+
+**Times in R**
+
+Times are represented using the *POSIXct* or the *POSIXlt* class
+
+* *POSIXct* is just a very large integer under the hood; it use a useful class when you want to store times in something like a dataframe
+
+* *POSIXlt* is a list underneath and it stores a bunch of other useful information like the day of the week, da of the year, month, day of the monnth
+
+
+There are a number of generic funcitons that work on dates and times
+
+* *weekdays*: give the day of the week
+* *months*: give the month name
+* *quarters*: give the quarter number ("Q1", "Q2", "Q3", or "Q4")
+
+
+Times can be coerces from a character string using the *as.POSIXit* or *as.POSIXct* fucntion
+
+
+```{r}
+x <- Sys.time()
+x
+p <- as.POSIXlt(x)
+names(unclass(p))
+p$sec
+```
+
+
+You can also use the *POSIXct* format.
+
+
+```{r}
+x <- Sys.time() 
+x ##Already in 'POSIXct' format
+
+unclass(x)
+## x$sec doesnt work need to convert to lt-format!
+
+p <- as.POSIXlt(x)
+p$sec
+```
+
+
+Finally, there is the *strptime* function in case your dates are written in a different format.
+
+```{r}
+datestring <- c("January 10, 2012 10:40", "December 9, 2011 9:10")
+x <- strptime(datestring, "%B %d %H:%M")
+x
+
+class(x)
+```
+
+
+I can *never* remember the formatting strings. Check? strptime for details! It is Helpful!
+
+
+**Operations on Dates and Times**
+
+
+You can use mathematical operations on dates and times. Well, really just + and -. You can do comparisons too (i.e. ==, <=)
+
+
+```{r}
+x <- as.Date("2012-01-01")
+y <- strptime("9 Jan 2011 11:34:21", "%d %b %Y %H:%M:%S")
+## x-y error message!
+x <- as.POSIXlt(x)
+x-y
+```
+
+
+Even keeps track of leap years, leap seconds, daylight savings, and time zones.
+
+
+```{r}
+x <- as.Date("2012-03-01")
+y <- as.Date("2012-02-28")
+x-y
+x <- as.POSIXct("2012-10-25 01:00:00")
+y <- as.POSIXct("2012-10-25 06:00:00", tz="GMT")
+y-x
+```
+
+
+**Summary**
+
+* Dates and times have special classes in R that allow for numerical and statistical calculations
+* Dates use the *Date* class
+* Times use the *POSIXct* and *POSIXlt* class
+* Character strings can be coerced to Date/Time classes using the *strptime* function or the *as.Date, as.POSIXct, or as.POSIXlt*
+
+
+***
+
+
+##Week 3: 
